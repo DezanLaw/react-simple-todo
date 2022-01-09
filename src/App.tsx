@@ -1,6 +1,5 @@
-import { Box, List, Typography }from "@material-ui/core";
-import React, { useDebugValue, useState } from "react";
-import { setConstantValue } from "typescript";
+import { Box, List, Typography } from "@material-ui/core";
+import React, { useState } from "react";
 import ControlPanel from "./components/ControlPanel";
 import TodoListItem from "./components/TodoListItem";
 
@@ -23,60 +22,30 @@ const intialTodos: Todo[] = [
 function App() {
   const [todos, setTodos] = useState<Todo[]>(intialTodos);
   const [value, setValue] = useState("");
-  const [filter, setFilter] = useState<TodoFilter>({completed: null });
+  const [filter, setFilter] = useState<TodoFilter>({ completed: null });
 
   const filteredTodos =
-    filter.completed === null ? todos : todos.filter((todo) => todo.completed === filter.completed);
+    filter.completed === null
+      ? todos
+      : todos.filter((todo) => todo.completed === filter.completed);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
   };
 
-  const toggleTodoById = (id: number, value: boolean) => {
-    setTodos(oldTodos) => {
-      return oldTodos.map((todoItem) => {
-        if (todoItem.id === id){
-          return {...todoItem, completed: value};
-        }
-      return todoItem;
-      });
-    });
-  };
+  const toggleTodoById = (id: number, value: boolean) => {};
 
-  const removeTodoById = (id: number) => {
-    setTodos((oldTodos) => {
-      return oldTodos.filter((todoItem) => todoItem.id !== id);
-    });
-  };
+  const removeTodoById = (id: number) => {};
 
-  const toggleFilterTodo = () => {
-    if (filter.completed !== false) {
-      setFilter({ completed: false });
-    } else {
-      setFilter({ completed: null });
-    }
-  };
-  const toggleFilterCompleted = () => {
-    if (filter.completed !== true) {
-      setFilter({ completed: true });
-    } else {
-      setFilter({ completed: null });
-  };
+  const toggleFilterTodo = () => {};
 
-  const handleAddTodo: React.MouseEventHandler<HTMLButtonElement> = (event) => {
-    event.preventDefault();
-    setTodos((oldTodos) => {
-      return [
-        ...oldTools,
-        {
-          id: oldTools.length,
-          text: useDebugValue.trim(),
-          completed: false,
-        },
-      ];
-    });
-    setConstantValue("");
-  };
+  const toggleFilterCompleted = () => {};
+
+  const handleAddTodo: React.MouseEventHandler<HTMLButtonElement> = (
+    event,
+  ) => {};
+
+  const handleReset = () => {};
 
   return (
     <Box maxWidth={400} margin="auto">
@@ -87,7 +56,7 @@ function App() {
       </Box>
 
       <Box display="flex" flexDirection="column">
-      <ControlPanel
+        <ControlPanel
           value={value}
           filter={filter}
           onChange={handleChange}
@@ -97,7 +66,9 @@ function App() {
           onToggleFilterCompleted={toggleFilterCompleted}
         />
         <List
-          subheader={<Typography variant="body2">{`${filteredTodos.length} todos`}</Typography>}
+          subheader={
+            <Typography variant="body2">{`${filteredTodos.length} todos`}</Typography>
+          }
         >
           {filteredTodos.map((todo, i) => (
             <TodoListItem
@@ -109,11 +80,10 @@ function App() {
               onToggle={toggleTodoById}
             />
           ))}
-        </List> 
+        </List>
       </Box>
     </Box>
   );
 }
-
 
 export default App;
