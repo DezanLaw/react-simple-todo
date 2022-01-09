@@ -45,7 +45,9 @@ function App() {
     event,
   ) => {};
 
-  const handleReset = () => {};
+  const handleReset = () => {
+    alert("Hello Dick");
+  };
 
   return (
     <Box maxWidth={400} margin="auto">
