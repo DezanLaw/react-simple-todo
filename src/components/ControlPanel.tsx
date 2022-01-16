@@ -1,4 +1,4 @@
-import { Box, Button, ButtonGroup,TextField } from "@material-ui/core";
+import { Box, Button, ButtonGroup, TextField } from "@material-ui/core";
 import React, { FC } from "react";
 import { TodoFilter } from "../App";
 
@@ -25,7 +25,12 @@ const ControlPanel: FC<ControlPanelProps> = ({
     <>
       <form>
         <Box display="flex" alignItems="center">
-          <TextField fullWidth placeholder="Try yourself!" value={value} onChange={onChange} />
+          <TextField
+            fullWidth
+            placeholder="Try yourself!"
+            value={value}
+            onChange={onChange}
+          />
           <Box marginLeft={2}>
             <Button
               disableRipple
@@ -40,10 +45,15 @@ const ControlPanel: FC<ControlPanelProps> = ({
           </Box>
         </Box>
       </form>
-      <Box marginY={2} display="flex" alignItems="center" justifyContent="center">
+      <Box
+        marginY={2}
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+      >
         <ButtonGroup>
           <Button disableRipple color="secondary" onClick={onReset}>
-            rese todos
+            reset todos
           </Button>
           <Button
             disableRipple
