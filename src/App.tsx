@@ -16,7 +16,7 @@ const intialTodos: Todo[] = [
   { id: 2, text: "press the bin to delete ->", completed: false },
   { id: 3, text: "you can filter me by TODO", completed: false },
   { id: 4, text: "you can filter me by COMPLETED", completed: true },
-  { id: 5, text: "more advance tutorials are coming...😍", completed: false },
+  { id: 5, text: "more advance tutorials are coming...😍⚛️", completed: false },
 ];
 
 function App() {
@@ -33,27 +33,70 @@ function App() {
     setValue(event.target.value);
   };
 
-  const toggleTodoById = (id: number, value: boolean) => {};
+  const toggleTodoById = (id: number, value: boolean) => {
+    setTodos((oldTodos) => {
+      return oldTodos.map((todoItem) => {
+        if (todoItem.id === id) {
+          // if match, change the completed value
+          return { ...todoItem, completed: value };
+        }
+        // remain unchanged
+        return todoItem;
+      });
+    });
+  };
 
-  const removeTodoById = (id: number) => {};
+  const removeTodoById = (id: number) => {
+    setTodos((oldTodos) => {
+      // filter out todo item where it's id match
+      // only return todo item id doesn't match
+      return oldTodos.filter((todoItem) => todoItem.id !== id);
+    });
+  };
 
-  const toggleFilterTodo = () => {};
+  const toggleFilterTodo = () => {
+    if (filter.completed !== false) {
+      setFilter({ completed: false });
+    } else {
+      // reset to null
+      setFilter({ completed: null });
+    }
+  };
+  const toggleFilterCompleted = () => {
+    if (filter.completed !== true) {
+      setFilter({ completed: true });
+    } else {
+      // reset to null
+      setFilter({ completed: null });
+    }
+  };
 
-  const toggleFilterCompleted = () => {};
-
-  const handleAddTodo: React.MouseEventHandler<HTMLButtonElement> = (
-    event,
-  ) => {};
+  const handleAddTodo: React.MouseEventHandler<HTMLButtonElement> = (event) => {
+    event.preventDefault();
+    setTodos((oldTodos) => {
+      return [
+        ...oldTodos,
+        {
+          id: oldTodos.length,
+          text: value.trim(),
+          completed: false,
+        },
+      ];
+    });
+    // reset input after create
+    setValue("");
+  };
 
   const handleReset = () => {
-    alert("Hello Dick");
+    setTodos(intialTodos);
+    setValue("");
   };
 
   return (
     <Box maxWidth={400} margin="auto">
       <Box padding={4}>
         <Typography variant="h6" align="center">
-          My first Reaction Simple Todo
+          My first React Simple Todo
         </Typography>
       </Box>
 
