@@ -16,7 +16,7 @@ const intialTodos: Todo[] = [
   { id: 2, text: "press the bin to delete ->", completed: false },
   { id: 3, text: "you can filter me by TODO", completed: false },
   { id: 4, text: "you can filter me by COMPLETED", completed: true },
-  { id: 5, text: "more advance tutorials are coming...😍⚛️", completed: false },
+  { id: 5, text: "more advance functions are coming...😍⚛️", completed: false },
 ];
 
 function App() {
